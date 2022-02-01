@@ -7,6 +7,8 @@ import PlayerStats from '../components/PlayerStats'
 import StartGame from '../components/StartGame'
 import GameText from '../components/GameText'
 import Header from '../components/Header'
+import axios from 'axios'
+
 
 
 export default function Home() {
@@ -19,6 +21,19 @@ export default function Home() {
   const Player = { "name": "Generic Player name", "health": 100, "lefthandweapon": { "name": "left sword" }, "righthandweapon": { "name": "right sword" } }
   const Shelf = [{ "name": "Hammer" }, { "name": "Axe" }, { "name": "Sword" }, { "name": "PoTion" }]
   const GameInfo = "Prompt to the Player"
+
+  async function handleCommand(event){
+    event.preventDefault();
+    const url = "http://127.0.0.1:8000/game_logic/test_game_logic/"
+    let message = JSON.stringify({"message":event.target.response.value})
+    try {
+      const response = await axios.get(url, message)
+    } catch (error) {
+      console.log(message)
+      console.log("You lose", error.message)
+    }
+
+  }
 
 
   return (
@@ -37,7 +52,7 @@ export default function Home() {
           <PlayerStats Player={Player} />
         </div>
         <div className='flex'>
-          <GameText GameInfo={GameInfo} />
+          <GameText GameInfo={GameInfo} handleCommand={handleCommand}/>
           <Inventory Shelf={Shelf} />
         </div>
         {/* <StartGame/> */}
