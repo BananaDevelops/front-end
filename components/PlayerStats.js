@@ -5,8 +5,8 @@ export default function PlayerStats({Player}){
         <p> {Player.name}</p>
         <p className=" bg-gray-200 font-bold text-sm">Status:</p>
         <p>Health: {Player.health}</p>
-        {/* <p>Left Hand Weapon: {Player.lefthandweapon.name}</p>
-        <p>Right Hand Weapon: {Player.righthandweapon.name}</p> */}
+        <p>Left Hand Weapon: {Player.left_hand.name ? Player.left_hand.name: 'Fist' }</p>
+        <p>Right Hand Weapon: {Player.right_hand.name ? Player.right_hand.name: 'Fist'}</p>
       </div>
       
     )

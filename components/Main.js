@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Login from '../components/Login'
 import GamePicture from '../components/GamePicture'
-import Inventory from "../components/Iventory"
+import Inventory from "./Inventory"
 import Map from '../components/Map'
 import PlayerStats from '../components/PlayerStats'
 import StartGame from '../components/StartGame'
@@ -27,12 +27,12 @@ export default function Main({player, mapData, setPlayer, setMap}){
   // const Player = { "name": "Generic Player name", "health": 100, "lefthandweapon": { "name": "left sword" }, "righthandweapon": { "name": "right sword" } }
 
   // const Shelf = Player.Inventory
-  const Shelf = [{ "name": "Hammer" }, { "name": "Axe" }, { "name": "Sword" }, { "name": "PoTion" }]
+  //const Shelf = [{ "name": "Hammer" }, { "name": "Axe" }, { "name": "Sword" }, { "name": "PoTion" }]
   const GameInfo = "Prompt to the Player"
 
   async function handleCommand(event){
     event.preventDefault();
-    const url = "http://127.0.0.1:8000/game_logic/test_game_logic/"
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
     const fullMessage = {"message":event.target.response.value,"player":player,"map":mapData }
 
     try {
@@ -63,7 +63,7 @@ export default function Main({player, mapData, setPlayer, setMap}){
       </div>
       <div className='flex'>
         <GameText GameInfo={GameInfo} handleCommand={handleCommand}/>
-        <Inventory Shelf={Shelf} />
+        <Inventory Shelf={player.inventory} />
       </div>
     </main>
 
