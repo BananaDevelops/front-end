@@ -13,9 +13,9 @@ import { useState } from 'react'
 
 
 
-export default function Main({player}){
+export default function Main({player, mapData, setPlayer, setMap}){
 
-  const [mapData, setMapData] = useState([[0,0,0]]);
+
 
 
 
@@ -24,25 +24,6 @@ export default function Main({player}){
     console.log('cool');
   }
 
-async function getMap(){
-    // const url= "https://stick-figure-backend.herokuapp.com/game_logic/test_map/"
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_map/`
-    try{
-      const response = await axios.get(url);
-      console.log("success", response.data.Data);
-      setMapData(response.data.Data)
-    }
-    catch(error){
-      
-      console.log("You lose", error.message);
-      return [[]]
-  
-    }
-  }
-  const Maproom = mapData
- 
-
-  
   // const Player = { "name": "Generic Player name", "health": 100, "lefthandweapon": { "name": "left sword" }, "righthandweapon": { "name": "right sword" } }
 
   // const Shelf = Player.Inventory
@@ -52,11 +33,15 @@ async function getMap(){
   async function handleCommand(event){
     event.preventDefault();
     const url = "http://127.0.0.1:8000/game_logic/test_game_logic/"
-    let message = {"message":event.target.response.value}
+    const fullMessage = {"message":event.target.response.value,"player":player,"map":mapData }
+
     try {
-      const response = await axios.post(url, message)
+      const response = await axios.post(url, fullMessage)
+      console.log(response.data)
+      setMap(response.data.map)
+      setPlayer(response.data.player)
     } catch (error) {
-      console.log(message)
+      console.log(fullMessage)
       console.log("You lose", error.message)
     }
 
@@ -72,7 +57,7 @@ async function getMap(){
     <main >
       <Header/>
       <div className="flex">
-        <Map Map_array={Maproom} />
+        <Map Map_array={mapData} />
         <GamePicture />
         <PlayerStats Player={player} />
       </div>
