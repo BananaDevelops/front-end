@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function StartGame(){
+export default function StartGame({player}){
     function handleSubmit(event){
         event.preventDefault();
         console.log(event.target.InitialUserName.value)
@@ -8,16 +8,16 @@ export default function StartGame(){
 
     async function handleCommand(event) {
         event.preventDefault();
-        const url = "http://127.0.0.1:8000/player/"
-        let name = JSON.stringify({"name":event.target.InitialUserName.value})
+        const url = `${process.env.NEXT_PUBLIC_BASE_URL}/player/`
+        let name = {"name":event.target.InitialUserName.value}
         try {
           const response = await axios.post(url, name)
+          player(response.data);
           console.log(response)
         } catch (error) {
-          console.log(name)
           console.log("You lose", error.message)
         }
-      }
+    }
     
     return(
         <form onSubmit={handleCommand}>
