@@ -17,7 +17,7 @@ export default function Main({player, mapData, setPlayer, setMap}){
 
 
 
-
+  const [gameInfo, setGameInfo] = useState("Welcome to game")
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,18 +28,20 @@ export default function Main({player, mapData, setPlayer, setMap}){
 
   // const Shelf = Player.Inventory
   //const Shelf = [{ "name": "Hammer" }, { "name": "Axe" }, { "name": "Sword" }, { "name": "PoTion" }]
-  const GameInfo = "Prompt to the Player"
+
 
   async function handleCommand(event){
     event.preventDefault();
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
-    const fullMessage = {"message":event.target.response.value,"player":player,"map":mapData }
+    const url = 'https://stick-figure-backend.herokuapp.com/game_logic/test_game_logic/'
+    //const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
+    const fullMessage = {"message":event.target.response.value,"player":player,"map":mapData,"prompt" : gameInfo }
 
     try {
       const response = await axios.post(url, fullMessage)
       console.log(response.data)
       setMap(response.data.map)
       setPlayer(response.data.player)
+      setGameInfo(response.prompt)
     } catch (error) {
       console.log(fullMessage)
       console.log("You lose", error.message)
@@ -62,7 +64,7 @@ export default function Main({player, mapData, setPlayer, setMap}){
         <PlayerStats Player={player} />
       </div>
       <div className='flex'>
-        <GameText GameInfo={GameInfo} handleCommand={handleCommand}/>
+        <GameText GameInfo={gameInfo} handleCommand={handleCommand}/>
         <Inventory Shelf={player.inventory} />
       </div>
     </main>
