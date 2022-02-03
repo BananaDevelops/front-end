@@ -2,13 +2,14 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import myLoader from "./Loader"
 import axios from "axios"
+import playerRetriever from "./GetPlayer"
 
 
-export default function Map({Map_array}) {
+export default function Map({Map_array, Player}) {
 
   function mapGenerator(array) {
     return (
-      <table className="bg-green">
+      <table className="bg-green w-11/12">
         <tbody>
           {array.map((mapRow, idx) => <tr key={idx}>{mapRow.map((mapTile, idxB) => {
           let color = "";
@@ -40,9 +41,9 @@ export default function Map({Map_array}) {
   }
 
   return (
-    <div className="inline flex-auto border-4 border-green bg-black w-1/4 rounded-2xl">
-      <p className="text-lg font-bold text-green">Map: </p>
-      <p className="text-green">You are in Room</p>
+    <div className="inline flex-auto border-4 border-green bg-black rounded-2xl p-4">
+      <p className="text-green font-bold underline decoration-inherit text-2xl">Map: </p>
+      <p className="text-green">You are {Player.combat ? "in Combat" : "free to explore"}</p>
       <div className="flex justify-center">
         {mapGenerator(Map_array)}
       </div>

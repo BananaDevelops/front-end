@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 
 
-export default function Main({player, mapData, setPlayer, setMap, gameInfo, setGameInfo}){
+export default function Main({ player, mapData, setPlayer, setMap, gameInfo, setGameInfo }) {
 
 
   function handleSubmit(event) {
@@ -27,11 +27,11 @@ export default function Main({player, mapData, setPlayer, setMap, gameInfo, setG
   //const Shelf = [{ "name": "Hammer" }, { "name": "Axe" }, { "name": "Sword" }, { "name": "PoTion" }]
 
 
-  async function handleCommand(event){
+  async function handleCommand(event) {
     event.preventDefault();
-    const url = 'https://stick-figure-backend.herokuapp.com/game_logic/test_game_logic/'
-    //const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
-    const fullMessage = {"message":event.target.response.value,"player":player,"map":mapData,"prompt" : gameInfo }
+    //const url = 'https://stick-figure-backend.herokuapp.com/game_logic/test_game_logic/'
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
+    const fullMessage = { "message": event.target.response.value, "player": player, "map": mapData, "prompt": gameInfo }
 
     try {
       const response = await axios.post(url, fullMessage)
@@ -49,24 +49,24 @@ export default function Main({player, mapData, setPlayer, setMap, gameInfo, setG
   return (
     <div >
 
-    <Head>
-      <title>Stick Adventure</title>
-    </Head>
+      <Head>
+        <title>Stick Adventure</title>
+      </Head>
 
-    <main >
-      <Header/>
-      <div className="flex">
-        <Map Map_array={mapData} />
-        <GamePicture Player={player}/>
-        <PlayerStats Player={player} />
-      </div>
-      <div className='flex'>
-        <GameText GameInfo={gameInfo} handleCommand={handleCommand}/>
-        <Inventory Shelf={player.inventory} />
-      </div>
-    </main>
+      <main className='bg-black pt-50 h-screen'>
+        <Header />
+        <div className="flex">
+          <Map Map_array={mapData} Player={player} />
+          <GamePicture Player={player} />
+          <PlayerStats Player={player} />
+        </div>
+        <div className='flex'>
+          <GameText GameInfo={gameInfo} handleCommand={handleCommand} />
+          <Inventory Shelf={player.inventory} />
+        </div>
+      </main>
 
 
-  </div>
+    </div>
   )
 }

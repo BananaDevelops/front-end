@@ -12,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <div className="bg-black">
+    <div className="bg-black font-mono">
       {player ? <Main gameInfo={gameInfo} setGameInfo={setGameInfo} player={player} mapData={mapData} setPlayer={setPlayer} setMap={setMapData} /> : <StartGame setMap={setMapData} player={setPlayer} />}
     </div>
 
