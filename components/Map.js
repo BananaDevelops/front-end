@@ -24,7 +24,7 @@ export default function Map({Map_array, Player}) {
           // 2 is player
           if (mapTile === 2) {
             // color = "w-1 p-5 bg-red"
-            return <td key={idxB} className="bg-black"><Image src="/../public/player.png" alt="player icon" width = "50" height="50"/></td>
+            return <td key={idxB} className="bg-black"><Image src="/../public/static/img/player.png" alt="player icon" width = "50" height="50"/></td>
           }
           // 3 is monster
           if (mapTile === 3) {
