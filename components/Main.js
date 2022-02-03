@@ -29,7 +29,7 @@ export default function Main({ player, mapData, setPlayer, setMap, gameInfo, set
 
   async function handleCommand(event) {
     event.preventDefault();
-    //const url = 'https://stick-figure-backend.herokuapp.com/game_logic/test_game_logic/'
+    // const url = 'https://stick-figure-backend.herokuapp.com/game_logic/test_game_logic/'
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/game_logic/test_game_logic/`
     const fullMessage = { "message": event.target.response.value, "player": player, "map": mapData, "prompt": gameInfo }
 
