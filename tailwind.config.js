@@ -4,7 +4,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      'green': '#40ff00',
+      'black': '#000000'
+    },
+    extend: {
+      backgroundImage: {
+        'player' : "url(/public/player.png)"
+      }
+    },
   },
   plugins: [],
 }

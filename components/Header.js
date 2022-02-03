@@ -2,14 +2,14 @@ import Link from "next/link"
 
 export default function Header() {
   return (
-    <header className="flex justify-between">
-      <h1 className="ml-4"> The Stick Adventure</h1>
-      <nav className="mr-4">
+    <header className="flex justify-between border-green border-4 bg-black rounded-2xl">
+      <h1 className="ml-2 my-2 text-green text-bold text-xl"> The Stick Adventure</h1>
+      <nav className="mr-4 my-2">
         <Link href="/About">
-          <a className="mr-4"> About</a>
+          <a className="mr-4 text-green"> About</a>
         </Link>
         <Link href="/Start">
-          <a>Restart</a>
+          <a className="text-green">Restart</a>
         </Link>
       </nav >
     </header >
