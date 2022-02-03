@@ -5,7 +5,7 @@ export default function Inventory({Shelf}){
             return <p className="text-green">Empty</p>
         }
         else{
-            return Shelf.map(weapon => <p key={weapon.name}>{weapon.name}</p>)
+            // return Shelf.map(weapon => <p key={weapon.name}>{weapon.name}</p>)
         }
     }
 

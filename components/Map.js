@@ -23,12 +23,16 @@ export default function Map({Map_array}) {
           // 2 is player
           if (mapTile === 2) {
             // color = "w-1 p-5 bg-red"
-            return <Image src="/../public/player.png" alt="player icon" width = "50" height="50"/>
+            return <td key={idxB} className="bg-black"><Image src="/../public/player.png" alt="player icon" width = "50" height="50"/></td>
           }
           // 3 is monster
           if (mapTile === 3) {
             color = "w-1 p-5 bg-black"
           }
+          // 4 is item space
+          if (mapTile === 4) {
+            color = "w-1 p-5 bg-black"
+          }          
           return <td key={idxB} className={color}></td>})}</tr>)}
         </tbody>
       </table>

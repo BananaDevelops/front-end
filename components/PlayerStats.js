@@ -5,8 +5,8 @@ export default function PlayerStats({Player}){
         <p className="text-green"> {Player.name}</p>
         <p className="text-green">Status:</p>
         <p className="text-green">Health: {Player.health}</p>
-        <p className="text-green">Left Hand Weapon: {Player.left_hand.name ? Player.left_hand.name: 'Fist' }</p>
-        <p className="text-green">Right Hand Weapon: {Player.right_hand.name ? Player.right_hand.name: 'Fist'}</p>
+        {/* <p className="text-green">Left Hand Weapon: {Player.left_hand.name ? Player.left_hand.name: 'Fist' }</p>
+        <p className="text-green">Right Hand Weapon: {Player.right_hand.name ? Player.right_hand.name: 'Fist'}</p> */}
       </div>
       
     )

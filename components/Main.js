@@ -13,11 +13,8 @@ import { useState } from 'react'
 
 
 
-export default function Main({player, mapData, setPlayer, setMap}){
+export default function Main({player, mapData, setPlayer, setMap, gameInfo, setGameInfo}){
 
-
-
-  const [gameInfo, setGameInfo] = useState("Welcome to game")
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -41,7 +38,7 @@ export default function Main({player, mapData, setPlayer, setMap}){
       console.log(response.data)
       setMap(response.data.map)
       setPlayer(response.data.player)
-      setGameInfo(response.prompt)
+      setGameInfo(response.data.prompt)
     } catch (error) {
       console.log(fullMessage)
       console.log("You lose", error.message)
@@ -60,7 +57,7 @@ export default function Main({player, mapData, setPlayer, setMap}){
       <Header/>
       <div className="flex">
         <Map Map_array={mapData} />
-        <GamePicture />
+        <GamePicture Player={player}/>
         <PlayerStats Player={player} />
       </div>
       <div className='flex'>
